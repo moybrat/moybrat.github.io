@@ -6,7 +6,7 @@ function init() {
       "ya-map",
       {
         center: [55.753215, 37.622504],
-        zoom: 9,
+        zoom: 3,
         controls: ["geolocationControl", "typeSelector"],
       },
       {
@@ -35,6 +35,7 @@ function init() {
 
   /* Добавляем товары на карту */
   addPoints(myMap, products);
+  addPointsOnMap(myMap, products);
 
   // myMap.geoObjects.events.add("click", function (e) {
   //   let object = e.get("target");
