@@ -34,7 +34,6 @@ function init() {
   });
 
   /* Добавляем товары на карту */
-  addPoints(myMap, products);
   addPointsOnMap(myMap, products);
 
   // myMap.geoObjects.events.add("click", function (e) {

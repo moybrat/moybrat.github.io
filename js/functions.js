@@ -1,39 +1,3 @@
-function addPoints(map, arr) {
-  /* Для каждого элемента массива */
-  arr.forEach((i) => {
-    ymaps
-      .geocode(i.adress, {
-        results: 1,
-      })
-      .then(function (res) {
-        const firstGeoObject = res.geoObjects.get(0),
-          coords = firstGeoObject.geometry.getCoordinates();
-        const myGeoObject = new ymaps.GeoObject(
-          {
-            // Описание геометрии.
-            geometry: {
-              type: "Point",
-              coordinates: coords,
-            },
-            // Свойства.
-            properties: {
-              iconContent: i.object,
-              hintContent: i.equipment.name,
-            },
-          },
-          {
-            // Опции.
-            // Иконка метки будет растягиваться под размер ее содержимого.
-            preset: "islands#blackStretchyIcon",
-            // Метку можно перемещать
-            draggable: false,
-          }
-        );
-        map.geoObjects.add(myGeoObject);
-      });
-  });
-}
-
 function addPointsOnMap(map, arr) {
   const clusterer = new ymaps.Clusterer({
       /* стили для меток нужно назначать каждой метке отдельно.
@@ -58,18 +22,33 @@ function addPointsOnMap(map, arr) {
      * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/GeoObject.xml
      */
 
-    getPointData = function (index) {
+    getPointData = function (info) {
+      const {
+        name,
+        number_factory,
+        number_inventory,
+        year_of_issue,
+        start_of_operation,
+      } = info.equipment;
       return {
-        balloonContentHeader:
-          '<font size=2><b>МЦ "ПЕТРОВСКИЕ ВОРОТА" В Москве</b></font>',
+        balloonContentHeader: "<font size=2><b>" + info.object + "</b></font>",
         balloonContentBody:
-          "<p><b>Магнитно Резонансный Томограф Siemens Magnetom Essenza</b></p>" +
-          "<p><b>Заводской номер: </b>49199</p>" +
-          "<p><b>Инвентарный номер: </b>МЦ-МО-ОС-0126</p>",
+          "<p><b>" +
+          name +
+          "</b></p>" +
+          "<p><b>Заводской номер: </b>" +
+          number_factory +
+          "</p>" +
+          "<p><b>Инвентарный номер: </b>" +
+          number_inventory +
+          "</p>",
         balloonContentFooter:
-          "<font size=1><b>Дата выпуска: </b>2011;<b>Начало эксплуатации:24.04.2013</b>",
-        clusterCaption:
-          "<strong>Москва, 1-ый Колобовский переулок, д.4</strong>",
+          "<font size=1><b>Дата выпуска: </b>" +
+          year_of_issue +
+          ";<b>Начало эксплуатации:" +
+          start_of_operation +
+          "</b>",
+        clusterCaption: "<strong>" + info.adress + "</strong>",
       };
     },
     /** Все опции, которые поддерживают геообъекты, можно посмотреть в документации.
@@ -117,7 +96,7 @@ function addPointsOnMap(map, arr) {
     for (var i = 0, len = products.length; i < len; i++) {
       geoObjects[i] = new ymaps.Placemark(
         coordinates[i],
-        getPointData(i),
+        getPointData(products[i]),
         getPointOptions()
       );
     }
