@@ -31,6 +31,7 @@ h1{
 
 .main-info{
     padding: 1.5rem 2rem;
+    max-width: 95vw;
     box-shadow: 0 0 8px #123;
     border-radius: .5rem;
 }
@@ -42,6 +43,9 @@ h1{
 
 .main-info main {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-info main a {
@@ -53,10 +57,7 @@ h1{
     display: flex;
     padding: 2rem;
     transition: .2s;
-}
-
-.main-info main a:nth-child(1) {
-    margin-right: 1rem;
+    margin: 0 1rem 1rem 1rem;
 }
 
 .main-info main a:hover {
@@ -66,7 +67,6 @@ h1{
 }
 
 .main-info footer {
-    margin-top: 1rem;
     text-align: center;
     cursor: default;
 }
