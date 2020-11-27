@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="82" height="90" viewBox="0 0 82 90">
+    <g transform="translate(-180 -1056)">
+        <rect width="70" height="90" rx="10" transform="translate(180 1056)" fill="#ff4d6b"/>
+        <rect width="60" height="46" rx="10" transform="translate(202 1088)" fill="#ff4d6b"/>
+        <rect width="53" height="32" rx="5" transform="translate(202 1095)" fill="#fff"/>
+        <text transform="translate(229 1117.5)" fill="#ff4d6b" font-size="18" font-family="SegoeUIBlack, Segoe UI">
+            <tspan x="-17.6" y="0">PDF</tspan>
+        </text>
+    </g>
+</svg>
